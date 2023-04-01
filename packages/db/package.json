@@ -1,0 +1,26 @@
+{
+  "name": "@rsc/db",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "clean": "rm -rf .turbo node_modules",
+    "db:generate": "drizzle-kit generate:mysql --breakpoints --out migrations --schema ./schema.ts",
+    "db:drop": "drizzle-kit drop --out migrations",
+    "db:push": "node migrate.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@planetscale/database": "^1.6.0",
+    "drizzle-orm": "^0.23.4",
+    "mysql2": "^3.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "18.15.11",
+    "drizzle-kit": "^0.17.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.3"
+  }
+}
