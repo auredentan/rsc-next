@@ -1,3 +1,4 @@
 packages:
   - apps/nextjs
+  - apps/remix
   - packages/db
