@@ -4,12 +4,12 @@ import { db, countries } from '@rsc/db'
 
 import './globals.css'
 
-const inter = Inter({ subsets: ['latin'] })
+export const dynamic = 'force-dynamic'
 
 export default async function Home() {
 
 	const count = await db.select().from(countries)
-	
+
 	return (
 		<main>
 			<button className='btn btn-primary'>Button</button>
