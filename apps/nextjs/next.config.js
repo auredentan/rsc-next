@@ -2,7 +2,7 @@
 const nextConfig = {
   experimental: {
     appDir: true,
-    serverComponentsExternalPackages: ["mysql2"],
+    transpilePackages: ["@rsc/db"]
   },
 }
 
