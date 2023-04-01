@@ -1,5 +1,3 @@
-import { Inter } from 'next/font/google'
-
 import { db, countries } from '@rsc/db'
 
 import './globals.css'
