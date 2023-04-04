@@ -68,10 +68,14 @@ importers:
       '@types/react': ^18.0.25
       '@types/react-dom': ^18.0.8
       '@vercel/node': ^2.6.2
+      autoprefixer: ^10.4.14
+      daisyui: ^2.51.5
       eslint: ^8.27.0
       isbot: ^3.6.5
+      postcss: ^8.4.21
       react: ^18.2.0
       react-dom: ^18.2.0
+      tailwindcss: ^3.3.1
       typescript: ^4.8.4
     dependencies:
       '@remix-run/node': 1.15.0
@@ -79,16 +83,20 @@ importers:
       '@remix-run/vercel': 1.15.0_@vercel+node@2.10.2
       '@rsc/db': link:../../packages/db
       '@vercel/node': 2.10.2
+      daisyui: 2.51.5_j7yt3jd32cwenjqavrrga47yr4
       isbot: 3.6.7
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+      tailwindcss: 3.3.1_postcss@8.4.21
     devDependencies:
       '@remix-run/dev': 1.15.0_@remix-run+serve@1.15.0
       '@remix-run/eslint-config': 1.15.0_xwsakiepjbime7xhpuohhtq4wa
       '@remix-run/serve': 1.15.0
       '@types/react': 18.0.31
       '@types/react-dom': 18.0.11
+      autoprefixer: 10.4.14_postcss@8.4.21
       eslint: 8.37.0
+      postcss: 8.4.21
       typescript: 4.9.5
 
   packages/db:
