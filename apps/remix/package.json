@@ -7,10 +7,12 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@rsc/db": "*",
+    "@clerk/remix": "^2.5.1",
     "@remix-run/node": "^1.15.0",
     "@remix-run/react": "^1.15.0",
+    "@remix-run/server-runtime": "^1.15.0",
     "@remix-run/vercel": "^1.15.0",
+    "@rsc/db": "*",
     "@vercel/node": "^2.6.2",
     "daisyui": "^2.51.5",
     "isbot": "^3.6.5",

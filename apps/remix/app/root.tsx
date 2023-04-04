@@ -1,3 +1,5 @@
+import {  ClerkApp, ClerkCatchBoundary  } from "@clerk/remix";
+
 import {
   Links,
   LiveReload,
@@ -7,15 +9,31 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 
-import type { LinksFunction } from '@remix-run/node';
+import type { DataFunctionArgs, LinksFunction} from '@remix-run/node';
+
+import { rootAuthLoader } from "@clerk/remix/ssr.server";
 
 import styles from './global.css'
+import Header from './components/Header';
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: styles },
 ];
 
-export default function App() {
+export const loader = (args: DataFunctionArgs) => {
+  return rootAuthLoader(
+    args,
+    ({ request }) => {
+      const { userId, sessionId, getToken } = request.auth;
+      console.log("Root loader auth:", { userId, sessionId, getToken });
+      return { message: `Hello from the root loader :)` };
+    },
+    { loadUser: true, signInUrl: '/sign-in',  }
+  );
+};
+
+
+function App() {
   return (
     <html lang="en">
       <head>
@@ -26,6 +44,7 @@ export default function App() {
         <Links />
       </head>
       <body>
+        <Header />
         <Outlet />
         <ScrollRestoration />
         <Scripts />
@@ -34,3 +53,7 @@ export default function App() {
     </html>
   );
 }
+
+export default ClerkApp(App)
+
+export const CatchBoundary = ClerkCatchBoundary();
