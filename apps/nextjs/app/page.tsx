@@ -1,4 +1,5 @@
-import { db, countries } from '@rsc/db'
+import { db } from './db.server'
+import { countries } from '@rsc/db'
 
 import './globals.css'
 

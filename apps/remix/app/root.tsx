@@ -7,7 +7,7 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 
-import { LinksFunction } from '@remix-run/node';
+import type { LinksFunction } from '@remix-run/node';
 
 import styles from './global.css'
 

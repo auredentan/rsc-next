@@ -1,8 +1,9 @@
-import type { LoaderFunction, V2_MetaFunction } from "@remix-run/node";
+import type { V2_MetaFunction } from "@remix-run/node";
 import { useLoaderData } from '@remix-run/react';
 import { json } from "@remix-run/node"; // or cloudflare/deno
 
-import { db, countries } from '@rsc/db'
+import { db } from '../db.server'
+import { countries } from '@rsc/db'
 
 export const meta: V2_MetaFunction = () => {
   return [{ title: "New Remix App" }];
