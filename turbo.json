@@ -12,11 +12,10 @@
       "cache": false
     },
     "dev": {
-      "dependsOn": ["^db:generate"],
       "cache": false
     },
     "build": {
-      "dependsOn": ["^db:generate"],
+      "dependsOn": ["^build", "^db:generate"],
       "outputs": [".next/**", ".expo/**"]
     },
     "lint": {},
