@@ -4,7 +4,8 @@
   "scripts": {
     "build": "remix build",
     "dev": "remix dev",
-    "typecheck": "tsc"
+    "typecheck": "tsc",
+    "postbuild": "cp ../../packages/db-prisma/node_modules/@prisma/engines/*query* .vercel_build_output/functions/node/render/; cp ../../packages/db-prisma/prisma/schema.prisma .vercel_build_output/functions/node/render/; ls .vercel_build_output/functions/node/render/"
   },
   "dependencies": {
     "@clerk/remix": "^2.5.1",
