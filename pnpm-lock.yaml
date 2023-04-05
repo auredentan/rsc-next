@@ -59,6 +59,7 @@ importers:
   apps/remix:
     specifiers:
       '@clerk/remix': ^2.5.1
+      '@prisma/client': ^4.12.0
       '@remix-run/dev': ^1.15.0
       '@remix-run/eslint-config': ^1.15.0
       '@remix-run/node': ^1.15.0
@@ -76,12 +77,14 @@ importers:
       eslint: ^8.27.0
       isbot: ^3.6.5
       postcss: ^8.4.21
+      prisma: ^4.12.0
       react: ^18.2.0
       react-dom: ^18.2.0
       tailwindcss: ^3.3.1
       typescript: ^4.8.4
     dependencies:
       '@clerk/remix': 2.5.1_yrrsed7hi66da6wcc4yugka74y
+      '@prisma/client': 4.12.0_prisma@4.12.0
       '@remix-run/node': 1.15.0
       '@remix-run/react': 1.15.0_biqbaboplfbrettd7655fr4n2y
       '@remix-run/server-runtime': 1.15.0
@@ -103,6 +106,7 @@ importers:
       autoprefixer: 10.4.14_postcss@8.4.21
       eslint: 8.37.0
       postcss: 8.4.21
+      prisma: 4.12.0
       typescript: 4.9.5
 
   packages/db:
@@ -4846,7 +4850,7 @@ packages:
       eslint-import-resolver-webpack:
         optional: true
     dependencies:
-      '@typescript-eslint/parser': 5.57.0_vwh6htx42aidho2qgfca5u5rwm
+      '@typescript-eslint/parser': 5.57.0_ip5up2nocltd47wbnuyybe5dxu
       debug: 3.2.7
       eslint: 8.37.0
       eslint-import-resolver-node: 0.3.7
@@ -4876,7 +4880,7 @@ packages:
       '@typescript-eslint/parser':
         optional: true
     dependencies:
-      '@typescript-eslint/parser': 5.57.0_vwh6htx42aidho2qgfca5u5rwm
+      '@typescript-eslint/parser': 5.57.0_ip5up2nocltd47wbnuyybe5dxu
       array-includes: 3.1.6
       array.prototype.flat: 1.3.1
       array.prototype.flatmap: 1.3.1

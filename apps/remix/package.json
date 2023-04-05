@@ -5,10 +5,11 @@
     "build": "remix build",
     "dev": "remix dev",
     "typecheck": "tsc",
-    "postbuild": "cp ../../packages/db-prisma/node_modules/@prisma/engines/*query* .vercel_build_output/functions/node/render/; cp ../../packages/db-prisma/prisma/schema.prisma .vercel_build_output/functions/node/render/; ls .vercel_build_output/functions/node/render/"
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@clerk/remix": "^2.5.1",
+    "@prisma/client": "^4.12.0",
     "@remix-run/node": "^1.15.0",
     "@remix-run/react": "^1.15.0",
     "@remix-run/server-runtime": "^1.15.0",
@@ -31,6 +32,7 @@
     "autoprefixer": "^10.4.14",
     "eslint": "^8.27.0",
     "postcss": "^8.4.21",
+    "prisma": "^4.12.0",
     "typescript": "^4.8.4"
   },
   "engines": {
