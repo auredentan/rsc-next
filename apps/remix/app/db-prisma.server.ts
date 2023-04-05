@@ -1,3 +1,3 @@
-import {  prisma } from "@rsc/db-prisma";
+import { prisma } from "@rsc/db-prisma";
 
 export { prisma }

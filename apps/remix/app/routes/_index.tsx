@@ -7,7 +7,6 @@ import { Link, useLoaderData } from '@remix-run/react';
 import { json } from "@remix-run/node"; // or cloudflare/deno
 
 import { prisma } from '../db-prisma.server'
-import { countries } from '@rsc/db'
 
 export const meta: V2_MetaFunction = () => {
   return [{ title: "New Remix App" }];
