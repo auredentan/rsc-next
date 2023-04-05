@@ -11,7 +11,7 @@
     "db:push": "prisma db push --skip-generate",
     "dev": "pnpm with-env prisma studio --port 5556",
     "with-env": "dotenv -e ../../.env --",
-    "install": "prisma generate"
+    "postinstall": "prisma generate"
   },
   "keywords": [],
   "author": "",
