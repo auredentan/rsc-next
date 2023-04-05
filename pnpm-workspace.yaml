@@ -2,3 +2,4 @@ packages:
   - apps/nextjs
   - apps/remix
   - packages/db
+  - packages/db-prisma

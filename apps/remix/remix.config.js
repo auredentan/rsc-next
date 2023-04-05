@@ -16,5 +16,7 @@ module.exports = {
     v2_routeConvention: true,
     unstable_tailwind: true,
   },
-  serverDependenciesToBundle: "all"
+  serverDependenciesToBundle: [
+    "@rsc/db-prisma"
+  ]
 };

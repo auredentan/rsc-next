@@ -6,7 +6,7 @@ import type { V2_MetaFunction } from "@remix-run/node";
 import { Link, useLoaderData } from '@remix-run/react';
 import { json } from "@remix-run/node"; // or cloudflare/deno
 
-import { db } from '../db.server'
+import { prisma } from '../db-prisma.server'
 import { countries } from '@rsc/db'
 
 export const meta: V2_MetaFunction = () => {
@@ -15,7 +15,7 @@ export const meta: V2_MetaFunction = () => {
 
 export const loader = async () => {
   console.log('ici')
-  const all_countries = await db.select().from(countries)
+  const all_countries = await prisma.countries.findMany()
   console.log({all_countries})
   return json(all_countries)
 }

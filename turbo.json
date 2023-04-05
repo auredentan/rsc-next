@@ -8,12 +8,15 @@
     "db:push": {
       "cache": false
     },
+    "db:pull": {
+      "cache": false
+    },
     "dev": {
-      "persistent": true,
+      "dependsOn": ["^db:generate"],
       "cache": false
     },
     "build": {
-      "dependsOn": ["^build"],
+      "dependsOn": ["^db:generate"],
       "outputs": [".next/**", ".expo/**"]
     },
     "lint": {},
