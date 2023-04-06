@@ -12,11 +12,9 @@
       "cache": false
     },
     "dev": {
-      "dependsOn": ["^db:generate"],
       "cache": false
     },
     "build": {
-      "dependsOn": ["^build", "^db:generate"],
       "outputs": [".next/**", ".expo/**"],
       "cache": false
     },
@@ -29,7 +27,6 @@
       "cache": false
     },
     "type-check": {
-      "dependsOn": [],
       "cache": false
     }
   },
