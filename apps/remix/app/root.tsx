@@ -1,3 +1,5 @@
+import { Analytics } from '@vercel/analytics/react';
+
 import {  ClerkApp, ClerkCatchBoundary  } from "@clerk/remix";
 
 import {
@@ -48,6 +50,7 @@ function App() {
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
+        <Analytics />
       </body>
     </html>
   );
