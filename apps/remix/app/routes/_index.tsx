@@ -1,29 +1,32 @@
-import React from 'react';
+import React from "react";
 
 import { SignedIn, SignedOut } from "@clerk/remix";
 
 import type { V2_MetaFunction } from "@remix-run/node";
-import { Link, useLoaderData } from '@remix-run/react';
+import { Link, useLoaderData } from "@remix-run/react";
 import { json } from "@remix-run/node"; // or cloudflare/deno
 
-import { db } from '../db.server'
-import { countries } from '@rsc/db'
+import { db } from "../db.server";
+import { countries } from "@rsc/db";
 
 export const meta: V2_MetaFunction = () => {
   return [{ title: "New Remix App" }];
 };
 
 export const loader = async () => {
-  const all_countries = await db.select().from(countries)
-  return json(all_countries)
-}
+  const all_countries = await db.select().from(countries);
+  return json(all_countries);
+};
 
 const ClerkFeatures = () => (
   <Link to="/user" className="cardContent">
     <img src="/icons/layout.svg" />
     <div>
       <h3>Explore features provided by Clerk</h3>
-      <p>Interact with the user button, user profile, and more to preview what your users will see</p>
+      <p>
+        Interact with the user button, user profile, and more to preview what
+        your users will see
+      </p>
     </div>
     <div className="arrow">
       <img src="/icons/arrow-right.svg" />
@@ -37,8 +40,8 @@ const SsrDemoLink = () => (
     <div>
       <h3>Visit the SSR demo page</h3>
       <p>
-        See how Clerk hydrates the auth state during SSR and CSR, enabling server-side generation even for
-        authenticated pages
+        See how Clerk hydrates the auth state during SSR and CSR, enabling
+        server-side generation even for authenticated pages
       </p>
     </div>
     <div className="arrow">
@@ -52,7 +55,10 @@ const SignupLink = () => (
     <img src="/icons/user-plus.svg" />
     <div>
       <h3>Sign up for an account</h3>
-      <p>Sign up and sign in to explore all the features provided by Clerk out-of-the-box</p>
+      <p>
+        Sign up and sign in to explore all the features provided by Clerk
+        out-of-the-box
+      </p>
     </div>
     <div className="arrow">
       <img src="/icons/arrow-right.svg" />
@@ -80,20 +86,19 @@ const Main = () => (
   </main>
 );
 
-
 export default function Index() {
-
-  const all = useLoaderData<typeof loader>()
+  const all = useLoaderData<typeof loader>();
   return (
     <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4" }}>
-       <div className="container">
-      <Main />
-    </div>
+      <div className="container">
+        <Main />
+      </div>
 
-      <button className='btn btn-primary'>Button</button>
+      <button className="btn btn-primary">Button</button>
 
-      {all.map((c) => <p key={c.id}>{c.name}</p>)}
-      
+      {all.map((c) => (
+        <p key={c.id}>{c.name}</p>
+      ))}
     </div>
   );
 }

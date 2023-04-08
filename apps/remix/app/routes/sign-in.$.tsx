@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 import { SignIn } from "@clerk/remix";
 

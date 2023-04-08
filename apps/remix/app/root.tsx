@@ -1,6 +1,6 @@
-import { Analytics } from '@vercel/analytics/react';
+import { Analytics } from "@vercel/analytics/react";
 
-import {  ClerkApp, ClerkCatchBoundary  } from "@clerk/remix";
+import { ClerkApp, ClerkCatchBoundary } from "@clerk/remix";
 
 import {
   Links,
@@ -11,16 +11,14 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 
-import type { DataFunctionArgs, LinksFunction} from '@remix-run/node';
+import type { DataFunctionArgs, LinksFunction } from "@remix-run/node";
 
 import { rootAuthLoader } from "@clerk/remix/ssr.server";
 
-import styles from './global.css'
-import Header from './components/Header';
+import styles from "./global.css";
+import Header from "./components/Header";
 
-export const links: LinksFunction = () => [
-  { rel: "stylesheet", href: styles },
-];
+export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }];
 
 export const loader = (args: DataFunctionArgs) => {
   return rootAuthLoader(
@@ -29,10 +27,9 @@ export const loader = (args: DataFunctionArgs) => {
       const { userId, sessionId, getToken } = request.auth;
       return { message: `Hello from the root loader :)` };
     },
-    { loadUser: true, signInUrl: '/sign-in',  }
+    { loadUser: true, signInUrl: "/sign-in" },
   );
 };
-
 
 function App() {
   return (
@@ -56,6 +53,6 @@ function App() {
   );
 }
 
-export default ClerkApp(App)
+export default ClerkApp(App);
 
 export const CatchBoundary = ClerkCatchBoundary();
