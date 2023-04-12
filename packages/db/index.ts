@@ -13,5 +13,8 @@ export const getDb = () => {
   });
   return drizzle(connection);
 };
+
 export type { PlanetScaleDatabase };
+
+export * from "./queries";
 export * from "./schema";
