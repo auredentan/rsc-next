@@ -17,6 +17,8 @@ import { rootAuthLoader } from "@clerk/remix/ssr.server";
 
 import styles from "./global.css";
 import Header from "./components/Header";
+import { ThemeProvider } from "./components/Theme/ThemeProvider";
+import { cn } from "./utils";
 
 export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }];
 
@@ -41,13 +43,15 @@ function App() {
         <Meta />
         <Links />
       </head>
-      <body className="min-h-screen bg-white font-sans text-slate-900 antialiased dark:bg-slate-900 dark:text-slate-50">
-        <Header />
-        <Outlet />
-        <ScrollRestoration />
-        <Scripts />
-        <LiveReload />
-        <Analytics />
+      <body className={cn("min-h-screen bg-background font-sans antialiased")}>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <Header />
+          <Outlet />
+          <ScrollRestoration />
+          <Scripts />
+          <LiveReload />
+          <Analytics />
+        </ThemeProvider>
       </body>
     </html>
   );

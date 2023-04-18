@@ -1,53 +1,60 @@
-import { SignedIn, SignedOut, UserButton } from "@clerk/remix";
+import { SignedIn, SignedOut } from "@clerk/remix";
 
 import { Link } from "@remix-run/react";
-import {
-  Sheet,
-  SheetTrigger,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetDescription,
-} from "./Sheet";
+
+import { cn } from "@/utils";
+
+import { Input } from "./Input";
+import { UserNav } from "./UserNav";
+import { ModeToggle } from "./Theme/Toggle";
 
 const Header = () => (
-  <header className="flex items-center h-14 px-6 shadow shadow-slate-400">
-    <div className="flex-none">
-      <Sheet>
-        <SheetTrigger>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            className="inline-block w-5 h-5 stroke-current"
+  <header className="border-b">
+    <div className="border-b">
+      <div className="flex h-16 items-center px-4">
+        <nav className={cn("flex items-center space-x-4 lg:space-x-6 mx-6")}>
+          <Link
+            to="/examples/dashboard"
+            className="text-sm font-medium transition-colors hover:text-primary"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M4 6h16M4 12h16M4 18h16"
-            ></path>
-          </svg>
-        </SheetTrigger>
-        <SheetContent position="left" size="sm">
-          <SheetHeader>
-            <SheetTitle>Are you sure absolutely sure?</SheetTitle>
-            <SheetDescription>
-              This action cannot be undone. This will permanently delete your
-              account and remove your data from our servers.
-            </SheetDescription>
-          </SheetHeader>
-        </SheetContent>
-      </Sheet>
-    </div>
-    <div className="grow"/>
-    <div className="flex-none">
-      <SignedOut>
-        <Link to="/sign-in">Sign in</Link>
-      </SignedOut>
-      <SignedIn>
-        <UserButton userProfileUrl="/user" afterSignOutUrl="/" />
-      </SignedIn>
+            Overview
+          </Link>
+          <Link
+            to="/examples/dashboard"
+            className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+          >
+            Customers
+          </Link>
+          <Link
+            to="/examples/dashboard"
+            className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+          >
+            Products
+          </Link>
+          <Link
+            to="/examples/dashboard"
+            className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+          >
+            Settings
+          </Link>
+        </nav>
+        <div className="ml-auto flex items-center space-x-4">
+          <div>
+            <Input
+              type="search"
+              placeholder="Search..."
+              className="h-9 md:w-[100px] lg:w-[300px]"
+            />
+          </div>
+          <SignedOut>
+            <Link to="/sign-in">Sign in</Link>
+          </SignedOut>
+          <SignedIn>
+            <UserNav />
+          </SignedIn>
+          <ModeToggle />
+        </div>
+      </div>
     </div>
   </header>
 );
