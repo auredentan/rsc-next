@@ -10,50 +10,48 @@ import { ModeToggle } from "./Theme/Toggle";
 
 const Header = () => (
   <header className="border-b">
-    <div className="border-b">
-      <div className="flex h-16 items-center px-4">
-        <nav className={cn("flex items-center space-x-4 lg:space-x-6 mx-6")}>
-          <Link
-            to="/examples/dashboard"
-            className="text-sm font-medium transition-colors hover:text-primary"
-          >
-            Overview
-          </Link>
-          <Link
-            to="/examples/dashboard"
-            className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
-          >
-            Customers
-          </Link>
-          <Link
-            to="/examples/dashboard"
-            className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
-          >
-            Products
-          </Link>
-          <Link
-            to="/examples/dashboard"
-            className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
-          >
-            Settings
-          </Link>
-        </nav>
-        <div className="ml-auto flex items-center space-x-4">
-          <div>
-            <Input
-              type="search"
-              placeholder="Search..."
-              className="h-9 md:w-[100px] lg:w-[300px]"
-            />
-          </div>
-          <SignedOut>
-            <Link to="/sign-in">Sign in</Link>
-          </SignedOut>
-          <SignedIn>
-            <UserNav />
-          </SignedIn>
-          <ModeToggle />
+    <div className="flex h-16 items-center px-4">
+      <nav className={cn("flex items-center space-x-4 lg:space-x-6 mx-6")}>
+        <Link
+          to="/examples/dashboard"
+          className="text-sm font-medium transition-colors hover:text-primary"
+        >
+          Overview
+        </Link>
+        <Link
+          to="/examples/dashboard"
+          className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+        >
+          Customers
+        </Link>
+        <Link
+          to="/examples/dashboard"
+          className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+        >
+          Products
+        </Link>
+        <Link
+          to="/examples/dashboard"
+          className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+        >
+          Settings
+        </Link>
+      </nav>
+      <div className="ml-auto flex items-center space-x-4">
+        <div>
+          <Input
+            type="search"
+            placeholder="Search..."
+            className="h-9 md:w-[100px] lg:w-[300px]"
+          />
         </div>
+        <SignedOut>
+          <Link to="/sign-in">Sign in</Link>
+        </SignedOut>
+        <SignedIn>
+          <UserNav />
+        </SignedIn>
+        <ModeToggle />
       </div>
     </div>
   </header>
