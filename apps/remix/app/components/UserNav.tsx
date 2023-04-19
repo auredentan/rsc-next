@@ -1,5 +1,7 @@
 import { CreditCard, LogOut, PlusCircle, Settings, User } from "lucide-react";
 
+import { SignOutButton, useUser } from "@clerk/remix";
+
 import { Avatar, AvatarFallback, AvatarImage } from "./Avatar";
 import { Button } from "./Button";
 import {
@@ -12,9 +14,9 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "./DropdownMenu";
-import { SignOutButton } from "@clerk/remix";
 
 export function UserNav() {
+  const { user } = useUser();
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -28,9 +30,9 @@ export function UserNav() {
       <DropdownMenuContent className="w-56" align="end" forceMount>
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
-            <p className="text-sm font-medium leading-none">shadcn</p>
+            <p className="text-sm font-medium leading-none">{user?.fullName}</p>
             <p className="text-xs leading-none text-muted-foreground">
-              m@example.com
+              {user?.primaryEmailAddress?.emailAddress}
             </p>
           </div>
         </DropdownMenuLabel>
@@ -50,10 +52,6 @@ export function UserNav() {
             <Settings className="mr-2 h-4 w-4" />
             <span>Settings</span>
             <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <PlusCircle className="mr-2 h-4 w-4" />
-            <span>New Team</span>
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
