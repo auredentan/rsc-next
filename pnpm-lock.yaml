@@ -112,14 +112,18 @@ importers:
   packages/db:
     specifiers:
       '@planetscale/database': ^1.6.0
+      '@types/uuid': ^9.0.1
       drizzle-kit: ^0.17.1
       drizzle-orm: ^0.23.4
       mysql2: ^3.2.0
+      uuid: ^9.0.0
     dependencies:
       '@planetscale/database': 1.6.0
       drizzle-orm: 0.23.4_7wrgmb4pybenke4ozfnne7qf3u
       mysql2: 3.2.0
+      uuid: 9.0.0
     devDependencies:
+      '@types/uuid': 9.0.1
       drizzle-kit: 0.17.1
 
 packages:
@@ -3161,6 +3165,10 @@ packages:
 
   /@types/unist/2.0.6:
     resolution: {integrity: sha512-PBjIUxZHOuj0R15/xuwJYjFi+KZdNFrehocChv4g5hu6aFroHue8m0lBP0POdK2nKzbw0cgV1mws8+V/JAcEkQ==}
+    dev: true
+
+  /@types/uuid/9.0.1:
+    resolution: {integrity: sha512-rFT3ak0/2trgvp4yYZo5iKFEPsET7vKydKF+VRCxlQ9bpheehyAJH89dAkaLEq/j/RZXJIqcgsmPJKUP1Z28HA==}
     dev: true
 
   /@typescript-eslint/eslint-plugin/5.59.0_wsbkzerfphvgr4lle7vmeh64yi:
@@ -10201,6 +10209,11 @@ packages:
     resolution: {integrity: sha512-pMZTvIkT1d+TFGvDOqodOclx0QWkkgi6Tdoa8gC8ffGAAqz9pzPTZWAybbsHHoED/ztMtkv/VoYTYyShUn81hA==}
     engines: {node: '>= 0.4.0'}
     dev: true
+
+  /uuid/9.0.0:
+    resolution: {integrity: sha512-MXcSTerfPa4uqyzStbRoTgt5XIe3x5+42+q1sDuy3R5MDk66URdLMOZe5aPX/SQd+kuYAh0FdP/pO28IkQyTeg==}
+    hasBin: true
+    dev: false
 
   /uvu/0.5.6:
     resolution: {integrity: sha512-+g8ENReyr8YsOc6fv/NVJs2vFdHBnBNdfE49rshrTzDWOlUx4Gq7KOS2GD8eqhy2j+Ejq29+SbKH8yjkAqXqoA==}

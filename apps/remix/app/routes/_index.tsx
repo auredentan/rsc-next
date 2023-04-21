@@ -5,8 +5,7 @@ import { useLoaderData } from "@remix-run/react";
 import { json } from "@remix-run/node"; // or cloudflare/deno
 
 import { db } from "@/db.server";
-import { getCountries } from "@rsc/db";
-import { Button } from "@/components/Button";
+import {  createActivity } from "@rsc/db";
 import { Main } from '@/components/Main';
 
 export const meta: V2_MetaFunction = () => {
@@ -14,12 +13,11 @@ export const meta: V2_MetaFunction = () => {
 };
 
 export const loader = async () => {
-  const all_countries = await getCountries(db);
-  return json(all_countries);
+  //await createActivity(db)
+  return null
 };
 
 export default function Index() {
-  const all = useLoaderData<typeof loader>();
   return (
     <Main />
   );

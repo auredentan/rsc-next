@@ -4,10 +4,10 @@ import { migrate } from "drizzle-orm/planetscale-serverless/migrator.js";
 import { connect } from "@planetscale/database";
 
 const connection = connect({
-  host: process.env["DATABASE_HOST"],
-  username: process.env["DATABASE_USERNAME"],
-  password: process.env["DATABASE_PASSWORD"],
+  host: process.env["MIG_DATABASE_HOST"],
+  username: process.env["MIG_DATABASE_USERNAME"],
+  password: process.env["MIG_DATABASE_PASSWORD"],
 });
 const db = drizzle(connection, { logger: true });
 
-migrate(db, { migrationsFolder: "./migrations" });
+migrate(db, { migrationsFolder: "./migrations",  });

@@ -14,9 +14,11 @@
   "dependencies": {
     "@planetscale/database": "^1.6.0",
     "drizzle-orm": "^0.23.4",
-    "mysql2": "^3.2.0"
+    "mysql2": "^3.2.0",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
+    "@types/uuid": "^9.0.1",
     "drizzle-kit": "^0.17.1"
   }
 }

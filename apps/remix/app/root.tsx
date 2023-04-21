@@ -8,7 +8,7 @@ import {
   Meta,
   Outlet,
   Scripts,
-  ScrollRestoration,
+  ScrollRestoration
 } from "@remix-run/react";
 
 import type { DataFunctionArgs, LinksFunction } from "@remix-run/node";
@@ -57,6 +57,7 @@ function App() {
   );
 }
 
+export const CatchBoundary = ClerkCatchBoundary();
+
 export default ClerkApp(App);
 
-export const CatchBoundary = ClerkCatchBoundary();

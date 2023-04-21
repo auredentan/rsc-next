@@ -1,7 +1,8 @@
-import {
-  PlanetScaleDatabase,
-} from "drizzle-orm/planetscale-serverless";
-import { countries } from "./schema";
+import { PlanetScaleDatabase } from "drizzle-orm/planetscale-serverless";
 
-export const getCountries = async (db: PlanetScaleDatabase) =>
-  await db.select().from(countries);
+import { v4 as uuidV4 } from "uuid";
+
+import { activities } from "./schema";
+
+export const createActivity = async (db: PlanetScaleDatabase) =>
+  await db.insert(activities).values({ id: uuidV4(), title: "test" });
