@@ -1,15 +1,11 @@
 import { Redis } from "@upstash/redis";
+import { Ratelimit } from "@upstash/ratelimit";
 
-import { Ratelimit } from "@upstash/ratelimit"; // for deno: see above
+import { RateLimiter } from "./types";
 
-export const createRedisClient = () => {
-  const redis = Redis.fromEnv();
-  return redis;
-};
-
-export const createRateLimiter = (redis?: Redis) => {
+export const createUpstashRateLimiter = () => {
   const ratelimit = new Ratelimit({
-    redis: redis ? redis : Redis.fromEnv(),
+    redis: Redis.fromEnv(),
     limiter: Ratelimit.slidingWindow(10, "10 s"),
     analytics: true,
     /**
@@ -19,5 +15,5 @@ export const createRateLimiter = (redis?: Redis) => {
      */
     prefix: "@upstash/ratelimit",
   });
-  return ratelimit;
+  return ratelimit as RateLimiter;
 };

@@ -1,7 +1,6 @@
 {
   "name": "@rsc/redis",
   "version": "1.0.0",
-  "main": "index.ts",
   "license": "ISC",
   "scripts": {
     "clean": "rm -rf .turbo node_modules"

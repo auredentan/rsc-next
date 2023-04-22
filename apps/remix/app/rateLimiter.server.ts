@@ -1,3 +1,5 @@
-import {createRateLimiter} from '@rsc/redis';
+import type { RateLimiter } from "@rsc/redis/types";
 
-export const rateLimiter = createRateLimiter()
+import { createUpstashRateLimiter } from "@rsc/redis/upstash";
+
+export const rateLimiter: RateLimiter = createUpstashRateLimiter();
