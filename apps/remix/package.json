@@ -18,6 +18,7 @@
     "@remix-run/vercel": "^1.15.0",
     "@rsc/config-tailwind": "*",
     "@rsc/db": "*",
+    "@rsc/redis": "*",
     "@vercel/analytics": "^0.1.11",
     "@vercel/node": "^2.10.3",
     "class-variance-authority": "^0.5.2",

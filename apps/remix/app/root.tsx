@@ -26,10 +26,19 @@ import styles from "./global.css";
 import Header from "./components/Header";
 import { ThemeProvider } from "./components/Theme/ThemeProvider";
 import { cn } from "./utils";
+import { rateLimiter } from './rateLimiter.server';
 
 export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }];
 
-export const loader = (args: DataFunctionArgs) => {
+export const loader = async (args: DataFunctionArgs) => {
+  // Rate limit
+  const ip = args.request.headers.get("X-Forwarded-For") ?? args.request.headers.get("x-real-ip");
+  const identifier = ip ?? "global";
+  const { success } = await rateLimiter.limit(identifier);
+  if(!success) {
+    throw new Error('Rate limit ....')
+  }
+
   return rootAuthLoader(
     args,
     async ({ request }) => {
