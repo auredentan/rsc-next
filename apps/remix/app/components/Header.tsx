@@ -6,7 +6,8 @@ import { Link } from "@remix-run/react";
 
 import { cn } from "@/utils";
 
-import { Input } from "./Input";
+import { Input } from "@/ui/Input";
+
 import { UserNav } from "./UserNav";
 import { ModeToggle } from "./Theme/Toggle";
 

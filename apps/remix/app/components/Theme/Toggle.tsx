@@ -1,14 +1,14 @@
 import * as React from "react"
 import { useTheme } from "./ThemeProvider"
 
-import { Button } from "../Button"
+import { Button } from "@/ui/Button"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "../DropdownMenu"
-import { Icons } from "../Icons"
+} from "@/ui/DropdownMenu"
+import { Icons } from "@/ui/Icons"
 
 export function ModeToggle() {
   const { setTheme } = useTheme()

@@ -5,7 +5,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "./Card";
+} from "@/ui/Card";
 
 export function Main() {
   return (

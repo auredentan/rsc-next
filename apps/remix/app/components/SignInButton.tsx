@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 
 import { useClerk } from "@clerk/remix";
 
-import { Button } from "./Button";
+import { Button } from "@/ui/Button";
 
 export default function SignInButton() {
   const { openSignIn } = useClerk();

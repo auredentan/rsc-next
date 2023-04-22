@@ -1,9 +1,9 @@
-import { CreditCard, LogOut, PlusCircle, Settings, User } from "lucide-react";
+import { CreditCard, LogOut, Settings, User } from "lucide-react";
 
 import { SignOutButton, useUser } from "@clerk/remix";
 
-import { Avatar, AvatarFallback, AvatarImage } from "./Avatar";
-import { Button } from "./Button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/ui/Avatar";
+import { Button } from "@/ui/Button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,7 +13,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuShortcut,
   DropdownMenuTrigger,
-} from "./DropdownMenu";
+} from "@/ui/DropdownMenu";
 
 export function UserNav() {
   const { user } = useUser();
