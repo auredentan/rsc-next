@@ -14,41 +14,13 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/ui/Popover";
 
 import { cn } from "@/utils";
 
-const frameworks = [
-  {
-    value: "next.js",
-    label: "Next.js",
-  },
-  {
-    value: "sveltekit",
-    label: "SvelteKit",
-  },
-  {
-    value: "nuxt.js",
-    label: "Nuxt.js",
-  },
-  {
-    value: "remix",
-    label: "Remix",
-  },
-  {
-    value: "astro",
-    label: "Astro",
-  },
-];
-
-interface ComboboxItem<T> {
+export interface ComboboxItem<T> {
   data: T;
   id: string;
   label: string;
 }
 
-export function Combobox<T>() {
-  const data: ComboboxItem<T>[] = frameworks.map((f) => ({
-    data: f,
-    id: f.value,
-    label: f.label,
-  }));
+export function Combobox<T>({ data }: { data: ComboboxItem<T>[] }) {
   const [open, setOpen] = React.useState(false);
 
   const [selectedValues, setSelectedValues] = React.useState<ComboboxItem<T>[]>(
@@ -67,7 +39,6 @@ export function Combobox<T>() {
         setSelectedValues([...selectedValues, sv]);
       }
     }
-    //setOpen(false);
   };
 
   return (
@@ -77,10 +48,15 @@ export function Combobox<T>() {
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-[200px] justify-between"
+          className="justify-between"
         >
           {selectedValues?.length > 0
-            ? selectedValues.map((s) => <span key={s.id}>{s.label}, </span>)
+            ? selectedValues.map((s, i) => (
+                <span key={s.id}>
+                  {s.label}
+                  {i !== selectedValues.length - 1 ? "," : ""}
+                </span>
+              ))
             : "Select ..."}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>

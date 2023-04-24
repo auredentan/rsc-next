@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next';
 
-import { SignedIn, SignedOut } from "@clerk/remix";
 
 import { Link } from "@remix-run/react";
 
@@ -13,9 +12,17 @@ import { ModeToggle } from "./Theme/Toggle";
 
 import SignUpButton from './SignUpButton';
 import SignInButton from './SignInButton';
+import { useAtom } from 'jotai';
+import { sessionUserAtom } from '@/store';
+import { SignedOut } from './SignedOut';
+import { SignedIn } from './SignedIn';
 
 const Header = () => {
   let { t } = useTranslation();
+
+  const [user] = useAtom(sessionUserAtom)
+
+  console.log({user})
 
   return (
   <header className="border-b">

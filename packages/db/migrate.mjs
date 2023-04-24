@@ -1,5 +1,5 @@
-import { drizzle } from "drizzle-orm/planetscale-serverless/index.js";
-import { migrate } from "drizzle-orm/planetscale-serverless/migrator.js";
+import { drizzle } from "drizzle-orm/planetscale-serverless";
+import { migrate } from "drizzle-orm/planetscale-serverless/migrator";
 
 import { connect } from "@planetscale/database";
 

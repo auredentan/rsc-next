@@ -18,34 +18,37 @@ import {
 
 import { DataFunctionArgs, LinksFunction, json } from "@remix-run/node";
 
-import { rootAuthLoader } from "@clerk/remix/ssr.server";
-
 import i18next from "@/i18next.server";
 
 import styles from "./global.css";
 import Header from "./components/Header";
 import { ThemeProvider } from "./components/Theme/ThemeProvider";
 import { cn } from "./utils";
-import { rateLimiter } from './rateLimiter.server';
+import { rateLimiter } from "./rateLimiter.server";
+import { authenticator } from "./services/auth.server";
+import { globalStore, sessionUserAtom } from "./store";
+import { Provider } from "jotai";
+import { rootAuthLoader } from "@clerk/remix/ssr.server";
 
 export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }];
 
 export const loader = async (args: DataFunctionArgs) => {
   // Rate limit
-  const ip = args.request.headers.get("X-Forwarded-For") ?? args.request.headers.get("x-real-ip");
+  const ip =
+    args.request.headers.get("X-Forwarded-For") ??
+    args.request.headers.get("x-real-ip");
   const identifier = ip ?? "global";
   const { success } = await rateLimiter.limit(identifier);
-  if(!success) {
-    throw new Error('Rate limit ....')
+  if (!success) {
+    throw new Error("Rate limit ....");
   }
 
   return rootAuthLoader(
     args,
     async ({ request }) => {
-      const { userId, sessionId, getToken } = request.auth;
-
-      let locale = await i18next.getLocale(request);
-      return json({ locale });
+      const user = await authenticator.isAuthenticated(args.request);
+      const locale = await i18next.getLocale(args.request);
+      return json({ locale, user });
     },
     { loadUser: true },
   );
@@ -59,16 +62,16 @@ export function useChangeLanguage(locale: string) {
 }
 
 function App() {
-  let { locale } = useLoaderData<typeof loader>();
+  let { locale, user } = useLoaderData<typeof loader>();
+
+  if (user) {
+    globalStore.set(sessionUserAtom, user);
+  }
 
   let { i18n } = useTranslation();
 
-  // This hook will change the i18n instance language to the current locale
-  // detected by the loader, this way, when we do something to change the
-  // language, this locale will change and i18next will load the correct
-  // translation files
   useChangeLanguage(locale);
-  
+
   return (
     <html lang={locale} dir={i18n.dir()}>
       <head>
@@ -94,4 +97,14 @@ function App() {
 
 export const CatchBoundary = ClerkCatchBoundary();
 
-export default ClerkApp(App);
+const AppWithAuth = (App: () => JSX.Element) => {
+  return () => {
+    return (
+      <Provider store={globalStore}>
+        <App />
+      </Provider>
+    );
+  };
+};
+
+export default ClerkApp(AppWithAuth(App));
