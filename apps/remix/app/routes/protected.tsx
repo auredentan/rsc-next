@@ -1,8 +1,8 @@
 import React from "react";
 
-
 import type { LoaderFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
+
 import { authenticator } from "@/services/auth.server";
 
 export const loader: LoaderFunction = async ({ request }) => {
