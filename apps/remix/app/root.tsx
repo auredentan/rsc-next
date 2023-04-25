@@ -2,9 +2,9 @@ import { useEffect } from "react";
 
 import { useTranslation } from "react-i18next";
 
-import { Analytics } from "@vercel/analytics/react";
+import { Provider } from "jotai";
 
-import { ClerkApp, ClerkCatchBoundary } from "@clerk/remix";
+import { Analytics } from "@vercel/analytics/react";
 
 import {
   Links,
@@ -27,8 +27,6 @@ import { cn } from "./utils";
 import { rateLimiter } from "./rateLimiter.server";
 import { authenticator } from "./services/auth.server";
 import { globalStore, sessionUserAtom } from "./store";
-import { Provider } from "jotai";
-import { rootAuthLoader } from "@clerk/remix/ssr.server";
 
 export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }];
 
@@ -43,15 +41,11 @@ export const loader = async (args: DataFunctionArgs) => {
     throw new Error("Rate limit ....");
   }
 
-  return rootAuthLoader(
-    args,
-    async ({ request }) => {
-      const user = await authenticator.isAuthenticated(args.request);
-      const locale = await i18next.getLocale(args.request);
-      return json({ locale, user });
-    },
-    { loadUser: true },
-  );
+  // Authentication
+  const user = await authenticator.isAuthenticated(args.request);
+  // Translations
+  const locale = await i18next.getLocale(args.request);
+  return json({ locale, user });
 };
 
 export function useChangeLanguage(locale: string) {
@@ -95,9 +89,7 @@ function App() {
   );
 }
 
-export const CatchBoundary = ClerkCatchBoundary();
-
-const AppWithAuth = (App: () => JSX.Element) => {
+const AppWithStore = (App: () => JSX.Element) => {
   return () => {
     return (
       <Provider store={globalStore}>
@@ -107,4 +99,4 @@ const AppWithAuth = (App: () => JSX.Element) => {
   };
 };
 
-export default ClerkApp(AppWithAuth(App));
+export default AppWithStore(App);

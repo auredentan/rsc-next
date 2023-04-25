@@ -1,3 +1,5 @@
+import { useAtom } from "jotai";
+
 import { CreditCard, LogOut, Settings, User } from "lucide-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/ui/Avatar";
@@ -13,7 +15,6 @@ import {
   DropdownMenuTrigger,
 } from "@/ui/DropdownMenu";
 import { sessionUserAtom } from "@/store";
-import { useAtom } from "jotai";
 
 export function UserNav() {
   const [user] = useAtom(sessionUserAtom);
@@ -55,13 +56,13 @@ export function UserNav() {
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
+        <a href="/logout">
         <DropdownMenuItem>
-          <a href="/logout">
             <LogOut className="mr-2 h-4 w-4" />
             <span>Log out</span>
             <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
-          </a>
         </DropdownMenuItem>
+        </a>
       </DropdownMenuContent>
     </DropdownMenu>
   );

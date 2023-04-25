@@ -1,6 +1,5 @@
 import React from "react";
 
-import { getAuth } from "@clerk/remix/ssr.server";
 
 import type { LoaderFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
