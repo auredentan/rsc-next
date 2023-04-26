@@ -4,6 +4,7 @@ export const users = mysqlTable("Users", {
   id: varchar("id", { length: 256 }).primaryKey().notNull(),
   email: text("email"),
   provider: text("provider"),
+  password: text("password"),
 });
 
 export const activities = mysqlTable("Activities", {

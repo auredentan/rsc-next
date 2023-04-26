@@ -1,5 +1,3 @@
-import { useAtom } from "jotai";
-
 import { CreditCard, LogOut, Settings, User } from "lucide-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/ui/Avatar";
@@ -14,10 +12,11 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/ui/DropdownMenu";
-import { sessionUserAtom } from "@/store";
+import { SignOutButton, useUser } from "@clerk/remix";
 
 export function UserNav() {
-  const [user] = useAtom(sessionUserAtom);
+  const { user } = useUser();
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -31,9 +30,9 @@ export function UserNav() {
       <DropdownMenuContent className="w-56" align="end" forceMount>
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
-            <p className="text-sm font-medium leading-none">{user?.email}</p>
+            <p className="text-sm font-medium leading-none">{user?.fullName}</p>
             <p className="text-xs leading-none text-muted-foreground">
-              {user?.email}
+              {user?.emailAddresses[0]?.emailAddress}
             </p>
           </div>
         </DropdownMenuLabel>
@@ -56,13 +55,11 @@ export function UserNav() {
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <a href="/logout">
-        <DropdownMenuItem>
+          <DropdownMenuItem>
             <LogOut className="mr-2 h-4 w-4" />
-            <span>Log out</span>
+            <SignOutButton>Log out</SignOutButton>
             <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
-        </DropdownMenuItem>
-        </a>
+          </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );

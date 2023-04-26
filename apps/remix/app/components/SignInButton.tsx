@@ -1,12 +1,27 @@
-import { useTranslation } from "react-i18next";
+import { useClerk } from "@clerk/remix";
+
+// @ts-ignore
+import { dark, light } from "@clerk/themes";
 
 import { Button } from "@/ui/Button";
-import { AuthenticationDialog } from './AuthenticationDialog';
+import { useTheme } from "./Theme/ThemeProvider";
 
-export default function SignInButton() {
-  let { t } = useTranslation();
+export function SignInButton() {
+  const clerk = useClerk();
+
+  const { theme } = useTheme();
 
   return (
-    <AuthenticationDialog triggerLabel={t('sign-in')} />
+    <Button
+      onClick={() =>
+        clerk.openSignIn({
+          appearance: {
+            baseTheme: theme === "dark" ? dark : light,
+          },
+        })
+      }
+    >
+      Sign in
+    </Button>
   );
 }

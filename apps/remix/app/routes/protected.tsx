@@ -1,14 +1,16 @@
 import React from "react";
 
-import type { LoaderFunction } from "@remix-run/node";
-import { json } from "@remix-run/node";
+import { LoaderFunction, redirect } from "@remix-run/node";
 
-import { authenticator } from "@/services/auth.server";
+import { getAuth } from "@clerk/remix/ssr.server";
+import { LoaderFunctionArgs } from "@clerk/remix/dist/ssr/types";
 
-export const loader: LoaderFunction = async ({ request }) => {
-  let user = await authenticator.isAuthenticated(request);
-  console.log({ user });
-  return json(user);
+export const loader: LoaderFunction = async (args: LoaderFunctionArgs) => {
+  const { userId } = await getAuth(args);
+  if(!userId){
+    return redirect("/");
+  }
+  return {}
 };
 
 export default function ProtectedPage() {

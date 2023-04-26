@@ -4,6 +4,8 @@ import { useTranslation } from "react-i18next";
 
 import { Provider } from "jotai";
 
+import { rootAuthLoader } from "@clerk/remix/ssr.server";
+
 import { Analytics } from "@vercel/analytics/react";
 
 import {
@@ -25,8 +27,7 @@ import Header from "./components/Header";
 import { ThemeProvider } from "./components/Theme/ThemeProvider";
 import { cn } from "./utils";
 import { rateLimiter } from "./rateLimiter.server";
-import { authenticator } from "./services/auth.server";
-import { globalStore, sessionUserAtom } from "./store";
+import { ClerkApp, ClerkCatchBoundary } from '@clerk/remix';
 
 export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }];
 
@@ -41,11 +42,11 @@ export const loader = async (args: DataFunctionArgs) => {
     throw new Error("Rate limit ....");
   }
 
-  // Authentication
-  const user = await authenticator.isAuthenticated(args.request);
-  // Translations
-  const locale = await i18next.getLocale(args.request);
-  return json({ locale, user });
+  return rootAuthLoader(args, async ({ request }) => {
+    // Translations
+    const locale = await i18next.getLocale(request);
+    return json({ locale });
+  });
 };
 
 export function useChangeLanguage(locale: string) {
@@ -56,11 +57,7 @@ export function useChangeLanguage(locale: string) {
 }
 
 function App() {
-  let { locale, user } = useLoaderData<typeof loader>();
-
-  if (user) {
-    globalStore.set(sessionUserAtom, user);
-  }
+  let { locale } = useLoaderData<typeof loader>();
 
   let { i18n } = useTranslation();
 
@@ -89,14 +86,6 @@ function App() {
   );
 }
 
-const AppWithStore = (App: () => JSX.Element) => {
-  return () => {
-    return (
-      <Provider store={globalStore}>
-        <App />
-      </Provider>
-    );
-  };
-};
+export const CatchBoundary = ClerkCatchBoundary();
 
-export default AppWithStore(App);
+export default ClerkApp(App);
