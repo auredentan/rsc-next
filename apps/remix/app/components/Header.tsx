@@ -34,6 +34,12 @@ const Header = () => {
           >
             Browse
           </Link>
+          <Link
+            to="/activities"
+            className="text-muted-foreground transition-colors hover:text-primary"
+          >
+            Activities
+          </Link>
           <NavMenu  />
         </nav>
         <div className="ml-auto flex items-center space-x-4">

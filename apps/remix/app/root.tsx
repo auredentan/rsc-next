@@ -2,8 +2,6 @@ import { useEffect } from "react";
 
 import { useTranslation } from "react-i18next";
 
-import { Provider } from "jotai";
-
 import { rootAuthLoader } from "@clerk/remix/ssr.server";
 
 import { Analytics } from "@vercel/analytics/react";
@@ -15,6 +13,7 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  V2_MetaFunction,
   useLoaderData,
 } from "@remix-run/react";
 
@@ -30,6 +29,10 @@ import { rateLimiter } from "./rateLimiter.server";
 import { ClerkApp, ClerkCatchBoundary } from '@clerk/remix';
 
 export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }];
+
+export const meta: V2_MetaFunction = () => {
+  return [{ title: "New Remix App" }];
+};
 
 export const loader = async (args: DataFunctionArgs) => {
   // Rate limit

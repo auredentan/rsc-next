@@ -1,0 +1,27 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-kysely"
+
+  // Optionally provide a destination directory for the generated file
+  // and a filename of your choice
+  output = "../src"
+  fileName = "types.ts"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Activities {
+  id            String   @id @db.VarChar(255)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  title         String   @db.VarChar(255)
+  description   String   @db.Text
+  creatorId     Int
+
+  @@index(creatorId)
+}

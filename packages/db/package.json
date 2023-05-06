@@ -7,15 +7,19 @@
   "license": "ISC",
   "scripts": {
     "clean": "rm -rf .turbo node_modules",
-    "db:generate": "drizzle-kit generate:mysql --breakpoints --out migrations --schema ./schema.ts",
-    "db:drop": "drizzle-kit drop --out migrations",
-    "db:push": "node migrate.mjs"
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push"
   },
   "dependencies": {
     "@planetscale/database": "^1.6.0",
+    "@prisma/client": "^4.13.0",
     "bcryptjs": "^2.4.3",
-    "drizzle-orm": "^0.25.2",
+    "drizzle-orm": "^0.25.4",
+    "kysely": "^0.24.2",
+    "kysely-planetscale": "^1.3.0",
     "mysql2": "^3.2.0",
+    "prisma": "^4.13.0",
+    "prisma-kysely": "^1.2.1",
     "uuid": "^9.0.0"
   },
   "devDependencies": {

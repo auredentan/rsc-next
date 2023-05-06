@@ -1,8 +1,5 @@
 import { getDb } from "@rsc/db";
-import type { PlanetScaleDatabase } from "@rsc/db";
 
-let db: PlanetScaleDatabase;
-
-db = getDb();
+const db = getDb();
 
 export { db };
